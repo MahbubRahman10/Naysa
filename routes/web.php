@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Auth Route
+Auth::routes();
+Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
+Route::get('register/email-confirm', function () {
+    return view('emails.confirmmessage');
+});
+Route::get('/logout', 'Auth\LoginController@logout');
+
