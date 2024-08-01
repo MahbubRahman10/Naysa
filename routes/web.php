@@ -25,3 +25,12 @@ Route::get('register/email-confirm', function () {
 });
 Route::get('/logout', 'Auth\LoginController@logout');
 
+
+// Product
+Route::get('/', 'ProductController@index');
+Route::get('/products', 'ProductController@product');
+Route::get('/products/{brand}', 'ProductController@brand');
+Route::post('/products', 'ProductController@product');
+Route::get('/product/{id}/{name}', 'ProductController@view');
+Route::get('/categories/{id}/{name}', 'ProductController@categories');
+Route::post('/product/review', 'ProductController@review');
