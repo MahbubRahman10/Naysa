@@ -21,7 +21,38 @@ class UserController extends BaseController
 {
  	
 
+public function updatepassword(Request $request)
+ 	{
+ 		$validator = Validator::make($request->all(), [
+ 			'oldpassword' => ' required',
+ 			'password' => 'required|string|min:6|confirmed',
+ 		]);
+      	// Validation
+ 		if ($validator->fails()) {
+ 			return back()
+ 			->withErrors($validator)
+ 			->withInput();
+ 		}
 
+ 		$current_password = Auth::User()->password;
+ 		if(Hash::check($request->oldpassword, $current_password))
+ 			{           
+ 				$user_id = Auth::User()->id;                       
+ 				$user = User::find($user_id);
+
+ 				$user->password =bcrypt($request->password);
+ 				$user->save();
+ 				return redirect()->back()->with('message', 'Your password has been changed successfully!');
+ 			}
+ 			else{
+ 				$validator->errors()->add('oldpassword', 'Please enter the correct password');
+ 				return back()
+ 				->withErrors($validator)
+ 				->withInput();
+ 			}
+
+
+ 	}
 
 
 }
