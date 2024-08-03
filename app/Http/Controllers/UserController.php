@@ -138,6 +138,19 @@ public function updatepassword(Request $request)
 
 
  	}
+ 	public function accountinformation()
+ 	{	
+ 		$id = Auth::user()->id;
+ 		$user = User::find($id);
+ 		return view('user.account-info',compact('user'));
+ 	}
+ 	
+ 	public function addressbook()
+ 	{	
+ 		$id = Auth::user()->id;
+ 		$user = User::find($id);
+ 		return view('user.address-book',compact('user'));
+ 	}
 
 
 }
