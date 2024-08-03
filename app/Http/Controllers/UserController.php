@@ -19,7 +19,92 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController
 {
- 	
+ 	public function contactinformation(Request $request)
+ 	{
+ 		// Validation
+ 		$data = Input::all();                 
+ 		$rules=array(
+ 			'firstname' => 'required',
+ 			'lastname' => 'required',
+ 			'phone' => 'required', 
+ 		);
+ 		$valid=Validator::make($data,$rules);
+ 		if($valid->fails()){
+ 			return Redirect()->back()->withErrors($valid);
+ 		}
+
+ 		$id = Auth::user()->id;
+ 		$user = User::find($id);
+
+ 		$user->firstname = $request->firstname;
+ 		$user->lastname = $request->lastname;
+		$user->company = $request->company;
+		$user->phone = $request->phone;
+ 		$user->fax = $request->fax;
+
+ 		$user->save();
+
+ 		return redirect()->back()->with('message', 'Your account successfully changed');
+
+ 	}
+
+ 	public function updateinfo(Request $request)
+ 	{
+ 		// Validation
+ 		$data = Input::all();                 
+ 		$rules=array(
+ 			'name' => 'required',
+ 			'phone' => 'required',
+ 		);
+ 		$valid=Validator::make($data,$rules);
+ 		if($valid->fails()){
+ 			return Redirect()->back()->withErrors($valid);
+ 		}
+
+ 		$id = Auth::user()->id;
+ 		$user = User::find($id);
+ 		$user->name = $request->name;
+ 		$user->phone = $request->phone;
+
+		$user->save();
+
+		return redirect()->back()->with('message', 'Your Information updated successfully');
+
+
+ 	}
+
+ 	public function updateaddressbook(Request $request)
+ 	{
+ 		// Validation
+ 		$data = Input::all();                 
+ 		$rules=array(
+ 			'address' => 'required',
+ 			'city' => 'required',
+ 			'postal' => 'required',
+ 			'country' => 'required'  
+ 		);
+ 		$valid=Validator::make($data,$rules);
+ 		if($valid->fails()){
+ 			return Redirect()->back()->withErrors($valid);
+ 		}
+
+ 		$id = Auth::user()->id;
+ 		$user = User::find($id);
+ 		if ($request->mobile) {
+ 			$user->phone2 = $request->mobile;
+ 		}
+
+ 		$user->address = $request->address;
+ 		$user->city = $request->city;
+		$user->postal = $request->postal;
+		$user->country = $request->country;
+
+		$user->save();
+
+		return redirect()->back()->with('message', 'Your Address Book updated successfully');
+
+
+ 	}
 
 public function updatepassword(Request $request)
  	{
