@@ -34,3 +34,9 @@ Route::post('/products', 'ProductController@product');
 Route::get('/product/{id}/{name}', 'ProductController@view');
 Route::get('/categories/{id}/{name}', 'ProductController@categories');
 Route::post('/product/review', 'ProductController@review');
+
+
+
+// Search
+Route::post('/search', 'SearchController@search');
+
