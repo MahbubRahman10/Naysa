@@ -40,3 +40,15 @@ Route::post('/product/review', 'ProductController@review');
 // Search
 Route::post('/search', 'SearchController@search');
 
+
+
+// Contact
+Route::get('/contact-us', 'ContactController@index');
+Route::post('/contact', 'ContactController@create');
+
+// About
+Route::get('/about', 'AboutController@index');
+
+// Gallery
+Route::get('/gallery', 'GalleryController@index');
+
