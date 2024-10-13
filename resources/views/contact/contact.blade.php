@@ -35,7 +35,7 @@
 						<div class="col-md-4 mail-grid">
 							<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
 							<h5>E-mail</h5>
-							<p>E-mail:<a href="mailto:example@mail.com"> info@naysabd.com</a></p>
+							<p>E-mail:<a href="mailto:example@mail.com"> info@naysa.com</a></p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
